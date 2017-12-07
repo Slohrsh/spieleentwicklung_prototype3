@@ -21,7 +21,6 @@ public class Endboss : MonoBehaviour {
         if(player != null)
         {
             float distance = Vector3.Distance(transform.position, player.position);
-            Debug.Log(distance);
             if (distance <= WaveDist && distance > TauntDist)
             {
                 animator.SetTrigger("Wave");

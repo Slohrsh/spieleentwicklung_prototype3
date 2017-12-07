@@ -42,6 +42,7 @@ public class EnemyController : MonoBehaviour {
         {
             isDead = true;
             animator.SetBool("IsDead", isDead);
+            CheckGround();
             Destroy(gameObject, 2f);
         }
     }
@@ -68,6 +69,17 @@ public class EnemyController : MonoBehaviour {
                 }
             }
         }
+    }
+
+    private void CheckGround()
+    {
+        int rockMask = 1 << NavMesh.GetAreaFromName("Rock");
+        NavMeshHit hit;
+        agent.SamplePathPosition(-1, 0.0f, out hit);
+        if (hit.mask == rockMask)//changed line
+            hit.
+        else
+            agent.speed = 10;
     }
 
     public void Damage(float damage)

@@ -33,7 +33,19 @@ public class PlayerNavigation : MonoBehaviour
             HandleMousInput();
             FollowAndAttack();
             CheckIfDead();
+            CheckGround();
         }
+    }
+
+    private void CheckGround()
+    {
+        int waterMask = 1 << NavMesh.GetAreaFromName("Rock");
+        NavMeshHit hit;
+        agent.SamplePathPosition(-1, 0.0f, out hit);
+        if (hit.mask == waterMask)//changed line
+            agent.speed = 3;
+        else
+            agent.speed = 10;
     }
 
     private void CheckIfDead()
